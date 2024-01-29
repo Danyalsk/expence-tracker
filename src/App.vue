@@ -43,54 +43,47 @@ const expenses = computed(() => {
 </script>
 
 <template>
-  <!-- outer most box -->
-  <div class="w-screen h-screen flex justify-center items-center">
-    <!-- main card -->
+  <div class="min-h-screen flex justify-center items-center p-4">
     <div
-      class="w-[700px] rounded-md border border-solid border-black p-4 space-y-4"
+      class="w-[400px] max-w-screen-md mx-auto rounded-md border border-solid border-black p-4 space-y-4"
     >
       <div
         class="grow rounded-md border border-solid border-black divide-y divide-black"
       >
-        <div class="p-4 grow">Balance: {{ income + expenses }}</div>
-        <div class="flex grow divide-x divide-black">
-          <div class="p-4 grow">Income: {{ income }}</div>
-          <div class="p-4 grow">Expenses:{{ expenses }}</div>
+        <div class="grow p-4">Balance: {{ income + expenses }}</div>
+        <div class="grow flex divide-x divide-black">
+          <div class="grow p-4">Income: {{ income }}</div>
+          <div class="grow p-4">Expenses: {{ expenses }}</div>
         </div>
       </div>
 
-      <div class="flex space-x-5">
+      <div class="flex flex-col space-y-4">
         <input
           v-model="transactionData.description"
           type="text"
           name="Description"
-          id="email"
-          class="grow rounded-md border-0 py-1.5 text-gray-900 p-2 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+          class="rounded-md border-0 py-2 px-3 text-gray-900 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm"
           placeholder="Description"
         />
         <input
           v-model="transactionData.amount"
           type="number"
           name="Amount"
-          id="email"
-          class="grow rounded-md border-0 py-1.5 text-gray-900 p-2 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+          class="rounded-md border-0 py-2 px-3 text-gray-900 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm"
           placeholder="Amount"
         />
         <button
           @click="addTransaction"
           type="button"
-          class="rounded-md bg-red-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+          class="rounded-md bg-red-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500"
         >
           Add Transaction
         </button>
       </div>
+
       <Table
         :TransactionProp="Transaction"
-        @deleteTransaction="
-          (index) => {
-            deleteTransaction(index);
-          }
-        "
+        @deleteTransaction="(index) => deleteTransaction(index)"
       />
     </div>
   </div>
