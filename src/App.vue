@@ -1,6 +1,7 @@
 <script setup>
 import Table from "./components/Table.vue";
-import { ref, computed } from "vue";
+import { ref, computed, watchEffect } from "vue";
+import gsap from "gsap";
 
 const transactionData = ref({
   description: "",
@@ -40,6 +41,13 @@ const expenses = computed(() => {
   });
   return sum;
 });
+
+// Animation logic
+const number = ref(0);
+
+watchEffect(() => {
+  gsap.to(number, { duration: 0.5, value: income.value + expenses.value });
+});
 </script>
 
 <template>
@@ -50,7 +58,7 @@ const expenses = computed(() => {
       <div
         class="grow rounded-md border border-solid border-black divide-y divide-black"
       >
-        <div class="grow p-4">Balance: {{ income + expenses }}</div>
+        <div class="grow p-4">Balance: {{ number }}</div>
         <div class="grow flex divide-x divide-black">
           <div class="grow p-4">Income: {{ income }}</div>
           <div class="grow p-4">Expenses: {{ expenses }}</div>
@@ -75,6 +83,7 @@ const expenses = computed(() => {
         <button
           @click="addTransaction"
           type="button"
+          :disabled="!transactionData.description || !transactionData.amount"
           class="rounded-md bg-red-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500"
         >
           Add Transaction
