@@ -51,10 +51,15 @@ watchEffect(() => {
 </script>
 
 <template>
-  <div class="min-h-screen flex justify-center items-center p-4">
+  <div
+    class="min-h-screen flex justify-center items-center p-4 bg-gradient-to-r from-gray-900 to-slate-800"
+  >
     <div
-      class="w-[400px] max-w-screen-md mx-auto rounded-md border border-solid border-black p-4 space-y-4"
+      class="w-[400px] max-w-screen-md mx-auto rounded-md border border-solid p-4 space-y-4 bg-white"
     >
+      <div class="justify-center items-center flex font-extrabold text-red-600">
+        <h1>EXPENSE TRACKER</h1>
+      </div>
       <div
         class="grow rounded-md border border-solid border-black divide-y divide-black"
       >
