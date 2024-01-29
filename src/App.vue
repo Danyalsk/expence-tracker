@@ -96,6 +96,7 @@ watchEffect(() => {
       </div>
 
       <Table
+        v-if="Transaction.length > 0"
         :TransactionProp="Transaction"
         @deleteTransaction="(index) => deleteTransaction(index)"
       />
